@@ -1,0 +1,9 @@
+fixtures:
+  repositories:
+    stdlib: 'git://github.com/puppetlabs/puppetlabs-stdlib'
+    openssl: 
+      repo: 'git://github.com/ehelms/puppet-openssl'
+      branch: 'add-ca-support'
+
+  symlinks:
+    foreman_certs: "#{source_dir}"
