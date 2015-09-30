@@ -7,8 +7,10 @@ class foreman_certs::params {
   
   $country              = 'US'
   $state                = 'NC'
-  $city                 = 'Raleigh'
+  $locality             = 'Raleigh'
   $organization         = 'Foreman'
   $organizational_unit  = undef
+
+  $use_puppet_ca = false
 
 }

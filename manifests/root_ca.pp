@@ -1,11 +1,15 @@
 class foreman_certs::root_ca {
 
-  openssl::certificate::authority { 'ca':
-    pki_dir      => '/etc/pki/foreman',
-    country      => $foreman_certs::country,
-    organization => $foreman_certs::organization,
-    commonname   => $fqdn,
-    days         => 365*20,
+  if !$use_puppet_ca {
+    openssl::certificate::authority { 'ca':
+      pki_dir      => $foreman_certs::pki_dir,
+      country      => $foreman_certs::country,
+      organization => $foreman_certs::organization,
+      state        => $foreman_certs::state,
+      locality     => $foreman_certs::locality,
+      common_name  => $fqdn,
+      days         => $foreman_certs::ca_expiration,
+    }
   }
 
 }

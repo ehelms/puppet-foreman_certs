@@ -18,7 +18,7 @@ describe 'foreman_certs' do
       })
     end
 
-    it { should contain_class('foreman_certs::config') }
+    it { should contain_class('foreman_certs::root_ca') }
   end
 
   context 'on debian' do
@@ -30,6 +30,6 @@ describe 'foreman_certs' do
       })
     end
 
-    it { should contain_class('foreman_certs::config') }
+    it { should contain_class('foreman_certs::root_ca') }
   end
 end
