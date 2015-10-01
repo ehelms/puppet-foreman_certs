@@ -11,6 +11,8 @@ class foreman_certs  (
 
 ) inherits foreman_certs::params {
 
+  include ::openssl
+
   class { '::foreman_certs::root_ca': }
 
 }

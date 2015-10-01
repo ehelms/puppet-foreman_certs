@@ -1,16 +1,21 @@
 class foreman_certs::foreman {
 
-  ssl_pkey { "${pki_dir}/private/${fqdn}.pem":
+  Class['foreman_certs::root_ca'] ->
+  ssl_pkey { "${::foreman_certs::pki_dir}/private/${fqdn}.pem":
     ensure => 'present',
   } ~>
-  x509_request { "${pki_dir}/requests/${fqdn}.csr":
+  x509_request { "${::foreman_certs::pki_dir}/requests/${fqdn}.csr":
     ensure      => 'present',
-    private_key => "${pki_dir}/private/${fqdn}.pem",
+    private_key => "${::foreman_certs::pki_dir}/private/${fqdn}.pem",
+    template    => "${::foreman_certs::pki_dir}/ca.cnf",
   } ~>
-  x509_cert { "${pki_dir}/certs/${fqdn}.pem":
+  x509_cert { "${::foreman_certs::pki_dir}/certs/${fqdn}.pem":
     ensure      => 'present',
-    private_key => "${pki_dir}/private/${fqdn}.pem",
-    request     => "${pki_dir}/requests/${fqdn}.csr",
+    server      => true,
+    private_key => "${::foreman_certs::pki_dir}/private/${fqdn}.pem",
+    request     => "${::foreman_certs::pki_dir}/requests/${fqdn}.csr",
+    template    => "${::foreman_certs::pki_dir}/ca.cnf",
+    req_ext     => false,
   }
 
 }
