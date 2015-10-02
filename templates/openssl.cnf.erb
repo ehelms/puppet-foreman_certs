@@ -15,8 +15,8 @@ x509_extensions = v3_ca
 serial         = $dir/serial
 database       = $dir/index.txt
 new_certs_dir  = $dir/certs
-private_key    = $dir/private/<%= @name %>_key.pem
-certificate    = $dir/certs/<%= @name %>_cert.pem
+private_key    = $dir/private/<%= @name %>_key.key
+certificate    = $dir/certs/<%= @name %>_cert.crt
 default_md     = sha1
 default_days   = <%= @ca_expiration %>
 
