@@ -7,7 +7,7 @@
 #
 class foreman_certs  (
 
-  $use_puppet_certs = foreman_certs::params::use_puppet_certs,
+  $use_puppet_certs = $::foreman_certs::params::use_puppet_certs,
 
 ) inherits foreman_certs::params {
 
